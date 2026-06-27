@@ -73,16 +73,16 @@ html,body{height:100%;font-family:'Noto Sans KR',sans-serif;background:var(--bg)
 
 /* ── SHELL ── */
 #app{position:fixed;inset:0;display:none;flex-direction:column;background:var(--bg);}
-#pages{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;}
+#pages{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;padding-bottom:calc(60px + env(safe-area-inset-bottom));}
 #pages::-webkit-scrollbar{display:none;}
 
 /* ── NAV ── */
 #nav{
   display:none;
-  background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-top:1px solid var(--border2);
   padding-bottom:env(safe-area-inset-bottom);
-  flex-shrink:0;
 }
 .nav-row{display:flex;}
 .nav-btn{
@@ -600,7 +600,7 @@ onAuthStateChanged(auth,async user=>{
     me=user;myName=user.displayName||'나';
     document.getElementById('auth-screen').style.display='none';
     document.getElementById('app').style.display='flex';
-    document.getElementById('nav').style.display='block';
+    document.getElementById('nav').style.display='flex';
     document.getElementById('home-sub').textContent=`안녕, ${myName} 💕`;
     init();
   }else{
